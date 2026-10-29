@@ -1,0 +1,48 @@
+{
+  "name": "safeshot",
+  "productName": "Safeshot",
+  "version": "1.0.0",
+  "description": "Fotograftaki gizlenecek alanlari elle secip bulaniklastirir, pikselleştirir veya karartir",
+  "main": "electron/main.js",
+  "author": "Safeshot",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.safeshot.app",
+    "productName": "Safeshot",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**/*",
+      "renderer/**/*",
+      "resources/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "include": "build/installer.nsh",
+      "shortcutName": "Safeshot"
+    }
+  }
+}

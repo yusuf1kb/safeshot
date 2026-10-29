@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="bandGrad" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#0a1120" stop-opacity="0.99"/>
+      <stop offset="0.55" stop-color="#0a1120" stop-opacity="0.94"/>
+      <stop offset="0.82" stop-color="#0a1120" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#0a1120" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowA" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="0.6" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1024" height="1024" rx="210" fill="#111a2e"/>
+
+  <g fill="#ffffff" font-family="Segoe UI Black, Segoe UI, Arial, sans-serif" font-weight="900" font-size="620" text-anchor="middle">
+    <text x="322" y="700">S</text>
+    <text x="702" y="700">S</text>
+  </g>
+
+  <ellipse cx="512" cy="496" rx="400" ry="118" fill="url(#bandGrad)"/>
+  <ellipse cx="470" cy="470" rx="290" ry="34" fill="url(#glowA)"/>
+  <ellipse cx="770" cy="520" rx="180" ry="26" fill="url(#glowB)"/>
+</svg>

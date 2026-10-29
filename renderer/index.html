@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="tr" data-theme="gece">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' file: data:; style-src 'self' 'unsafe-inline'; script-src 'self';"
+    />
+    <title>Safeshot</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img src="../resources/icon.png" alt="" />
+        <div>
+          <strong>Safeshot</strong>
+          <span>Bilgileri Gizle</span>
+        </div>
+      </div>
+
+      <div class="file-title" id="fileTitle">Fotoğraf açılmadı</div>
+
+      <div class="top-actions">
+        <button class="btn ghost theme-btn" id="themeBtn" title="Tema değiştir">
+          <span class="th-ic" id="themeIcon">☾</span><span id="themeName">Gece</span>
+        </button>
+        <button class="btn" id="openBtn">Fotoğraf aç</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-head">
+          <span>Alanlar</span>
+          <span class="pill" id="countPill">0</span>
+        </div>
+
+        <div class="tools">
+          <div class="tool-line">
+            <button class="tool" type="button" data-tool="rect" aria-pressed="true">
+              <span class="ic">▭</span>Dikdörtgen
+            </button>
+            <button class="tool" type="button" data-tool="brush" aria-pressed="false">
+              <span class="ic">✎</span>Serbest
+            </button>
+          </div>
+          <div class="brush-field hidden" id="brushField">
+            <label>Fırça kalınlığı <span id="brushVal">3.5%</span></label>
+            <input type="range" id="brush" min="10" max="80" step="5" value="35" />
+          </div>
+        </div>
+
+        <div class="methods">
+          <div class="method-line">
+            <button class="method" type="button" data-mode="blur" aria-pressed="true">
+              <span class="ic">◍</span>
+              <span class="txt"><strong>Bulanıklaştır</strong><small>Okunmaz hale getir</small></span>
+            </button>
+          </div>
+          <div class="method-line">
+            <button class="method" type="button" data-mode="pixelate" aria-pressed="false">
+              <span class="ic">▦</span>
+              <span class="txt"><strong>Pikselleştir</strong><small>Mozaik kareler</small></span>
+            </button>
+          </div>
+          <div class="method-line">
+            <button class="method" type="button" data-mode="solid" aria-pressed="false">
+              <span class="ic">■</span>
+              <span class="txt"><strong>Karart</strong><small>Seçtiğin renkle kapat</small></span>
+            </button>
+            <label class="swatch" id="colorWrap" title="Karartma rengi">
+              <input type="color" id="color" value="#0b1220" />
+            </label>
+          </div>
+        </div>
+
+        <div class="sel-info" id="selectionInfo">Yeni alanlar için varsayılan ayar</div>
+
+        <div class="list" id="list"></div>
+
+        <div class="sidebar-foot">
+          <div class="side-actions">
+            <button class="btn" id="undoBtn" disabled>↶ Geri al</button>
+            <button class="btn" id="clearBtn" disabled>Temizle</button>
+          </div>
+          <p class="hint">
+            Görselin üzerinde fareyle basılı tutup sürükleyerek alan çiz. Alanın içine basıp
+            sürüklersen taşır, seçili alanın köşe tutamaçlarından boyutlandırırsın.
+            <kbd>Delete</kbd> siler.
+          </p>
+        </div>
+      </aside>
+
+      <section class="stage" id="stage">
+        <div class="dropzone" id="dropzone">
+          <div class="drop-inner">
+            <div class="drop-icon">⛨</div>
+            <h1>Fotoğrafı buraya bırak</h1>
+            <p>
+              veya <button class="link" id="dropPick">dosya seç</button> — gizlemek istediğin yeri
+              fareyle sürükleyerek işaretle, yöntemini ve gücünü kendin seç.
+            </p>
+            <p class="tiny">Hiçbir görsel bilgisayarından çıkmaz, tamamen çevrimdışı çalışır.</p>
+          </div>
+        </div>
+
+        <div class="viewer hidden" id="viewer">
+          <canvas id="canvas"></canvas>
+        </div>
+
+        <div class="progress hidden" id="progress">
+          <div class="spinner"></div>
+          <div class="progress-text" id="progressText">Kaydediliyor…</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="exportbar">
+      <div class="field">
+        <label>Güç <span id="strengthVal">1.0×</span></label>
+        <input type="range" id="strength" min="20" max="200" step="5" value="100" />
+      </div>
+
+      <div class="field">
+        <label>Format</label>
+        <select id="format">
+          <option value="orijinal">Orijinal (aynı tür)</option>
+          <option value="png">PNG</option>
+          <option value="jpeg">JPEG</option>
+          <option value="webp">WebP</option>
+          <option value="pdf">PDF</option>
+        </select>
+      </div>
+
+      <div class="field" id="qualityField">
+        <label>Kalite <span id="qualityVal">92</span></label>
+        <input type="range" id="quality" min="30" max="100" value="92" />
+      </div>
+
+      <div class="spacer"></div>
+
+      <button class="btn ghost" id="saveAsBtn" disabled>Farklı kaydet</button>
+      <button class="btn primary" id="saveBtn" disabled>Kaydet</button>
+    </footer>
+
+    <div class="toasts" id="toasts"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
